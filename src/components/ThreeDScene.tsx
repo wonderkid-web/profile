@@ -27,8 +27,8 @@ function Pyramid() {
   });
 
   return (
-    <Tetrahedron ref={ref} args={[1, 0]} scale={3}>
-      <meshStandardMaterial color="white" wireframeLinewidth={500} wireframe />
+    <Tetrahedron ref={ref} args={[1, 0]} scale={1.5}>
+      <meshStandardMaterial color="white" wireframe />
     </Tetrahedron>
   );
 }
@@ -77,6 +77,7 @@ function FloatingText({
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     ref.current.position.y = initialY + Math.sin(time + position[0]) * 0.2;
+    ref.current.lookAt(0, ref.current.position.y, 0);
   });
 
   return (
@@ -84,7 +85,7 @@ function FloatingText({
       ref={ref}
       position={position}
       fontSize={0.3}
-      color="#000"
+      color="black"
       anchorX="center"
       anchorY="middle"
       onClick={onClick}
@@ -130,50 +131,51 @@ function Scene() {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
   const controlsRef = useRef<any>(null!);
   const { camera } = useThree();
-  const cubesCount = 20;
+  const cubesCount = 150;
 
-  const contentItems = [
-    {
-      text: "My Profile",
-      position: [0, 0.005 + Math.random() * 0.5 - 0.75, 2] as [
-        number,
-        number,
-        number,
-      ],
-      content:
-        "Web developer passionate about creating immersive experiences with cutting-edge technologies.",
-    },
-    {
-      text: "What I've Done",
-      position: [1.5, 1.5 + Math.random() * 1.5 - 0.75, 1] as [
-        number,
-        number,
-        number,
-      ],
-      content:
-        "Developed responsive web applications, created interactive 3D visualizations, and optimized performance for high-traffic sites.",
-    },
-    {
-      text: "My Skills",
-      position: [-1.5, 1.5 + Math.random() * 1.5 - 0.75, 1] as [
-        number,
-        number,
-        number,
-      ],
-      content:
-        "Proficient in React, Three.js, Next.js, TypeScript, and WebGL. Experienced in creating performant and accessible web applications.",
-    },
-    {
-      text: "Contact Me",
-      position: [0, 1 + Math.random() * 1.5 - 0.75, 1] as [
-        number,
-        number,
-        number,
-      ],
-      content:
-        "Get in touch at johndoe@example.com or connect with me on LinkedIn and GitHub.",
-    },
-  ];
+  const contentItems = useMemo(() => {
+    const items = [
+      {
+        text: "My Profile",
+        content:
+          "Web developer passionate about creating immersive experiences with cutting-edge technologies.",
+      },
+      {
+        text: "What I've Done",
+        content:
+          "Developed responsive web applications, created interactive 3D visualizations, and optimized performance for high-traffic sites.",
+      },
+      {
+        text: "My Skills",
+        content:
+          "Proficient in React, Three.js, Next.js, TypeScript, and WebGL. Experienced in creating performant and accessible web applications.",
+      },
+      {
+        text: "Contact Me",
+        content:
+          "Get in touch at johndoe@example.com or connect with me on LinkedIn and GitHub.",
+      },
+      {
+        text: "Projects",
+        content:
+          "Created innovative web applications, including a real-time collaborative whiteboard and a 3D product configurator.",
+      },
+    ];
+
+    return items.map((item, index) => {
+      const angle = (index / items.length) * Math.PI * 2;
+      const radius = 2.5;
+      const yOffset = Math.random() * 1.5 - 0.75;
+      return {
+        ...item,
+        position: [
+          Math.sin(angle) * radius,
+          1.5 + yOffset,
+          Math.cos(angle) * radius,
+        ] as [number, number, number],
+      };
+    });
+  }, []);
 
   const handleContentClick = (text: string) => {
     setActiveContent(text);
@@ -184,8 +186,7 @@ function Scene() {
       const start = Date.now();
       const startPosition = camera.position.clone();
 
-      //@ts-ignore
-      function animate() {
+      const animate = () => {
         const now = Date.now();
         const progress = Math.min((now - start) / duration, 1);
         camera.position.lerpVectors(startPosition, targetPosition, progress);
@@ -195,7 +196,7 @@ function Scene() {
         } else {
           controlsRef.current.enabled = true;
         }
-      }
+      };
       animate();
     }
   };
@@ -215,7 +216,6 @@ function Scene() {
       {Array.from({ length: cubesCount }).map((_, index) => (
         <SparklingCube key={index} index={index} total={cubesCount} />
       ))}
-
       {contentItems.map((item) => (
         <FloatingText
           key={item.text}
