@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useMemo, useState } from "react";
+import Image from "next/image";
+import profile from "/public/profile.jpg";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -11,18 +13,12 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function Pyramid() {
   const ref = useRef<THREE.Mesh>(null!);
 
-  useFrame((state, delta) => {
+  useFrame((delta: any) => {
     ref.current.rotation.y += delta * 0.2;
   });
 
@@ -107,13 +103,13 @@ function ContentCard({
   onClose: () => void;
 }) {
   return (
-    <Html center>
-      <Card className="w-64 bg-black border border-white text-white">
+    <Html center className="w-screen flex justify-center">
+      <Card className="w-1/2 bg-black border border-white text-white">
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="text-2xl">{title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>{content}</p>
+          {content}
           <Button
             onClick={onClose}
             className="mt-4 bg-white text-black hover:bg-gray-200"
@@ -137,13 +133,70 @@ function Scene() {
     const items = [
       {
         text: "My Profile",
-        content:
-          "Web developer passionate about creating immersive experiences with cutting-edge technologies.",
+        content: (
+          <div className="flex flex-col gap-2 items-center p-6 bg-black text-white rounded-lg border border-white max-w-lg mx-auto">
+            <div className="w-44 h-44 rounded-full relative overflow-hidden border-2 border-white mr-4">
+              <Image src={profile} alt="Foto Profil" objectFit="cover" />
+            </div>
+            <div className="flex flex-col justify-center text-base text-center">
+              <p>Halo 👋!</p>
+              <p>Nama saya Muhammad Wahyu Ramadhan </p>
+              <p>Saya seorang Frontend Developer dari Medan 📌</p>
+            </div>
+          </div>
+        ),
       },
       {
         text: "What I've Done",
-        content:
-          "Developed responsive web applications, created interactive 3D visualizations, and optimized performance for high-traffic sites.",
+        content: (
+          <div className="overflow-auto max-h-64 flex flex-col gap-2 items-center p-6 bg-black text-white rounded-lg max-full mx-auto">
+            <div className="grid grid-cols-3 gap-3 border-white border w-full">
+              <div className="m-2 mt-5 w-44 h-44 col-start-1 col-end-2 rounded-md relative overflow-hidden border-2 border-white mr-4">
+                <Image src={profile} alt="Foto Profil" objectFit="cover" />
+              </div>
+              <div className="p-4 col-start-2 col-span-2">
+                <p className="text-2xl mb-2 font-bold">Barber Shop Langkat</p>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the {"industry's"}
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 border-white border w-full">
+              <div className="m-2 mt-5 w-44 h-44 col-start-1 col-end-2 rounded-md relative overflow-hidden border-2 border-white mr-4">
+                <Image src={profile} alt="Foto Profil" objectFit="cover" />
+              </div>
+              <div className="p-4 col-start-2 col-span-2">
+                <p className="text-2xl mb-2 font-bold">Barber Shop Langkat</p>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the {"industry's"}
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 border-white border w-full">
+              <div className="m-2 mt-5 w-44 h-44 col-start-1 col-end-2 rounded-md relative overflow-hidden border-2 border-white mr-4">
+                <Image src={profile} alt="Foto Profil" objectFit="cover" />
+              </div>
+              <div className="p-4 col-start-2 col-span-2">
+                <p className="text-2xl mb-2 font-bold">Barber Shop Langkat</p>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the {"industry's"}
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
+                </p>
+              </div>
+            </div>
+          </div>
+        ),
       },
       {
         text: "My Skills",
@@ -154,11 +207,6 @@ function Scene() {
         text: "Contact Me",
         content:
           "Get in touch at johndoe@example.com or connect with me on LinkedIn and GitHub.",
-      },
-      {
-        text: "Projects",
-        content:
-          "Created innovative web applications, including a real-time collaborative whiteboard and a 3D product configurator.",
       },
     ];
 
@@ -227,6 +275,7 @@ function Scene() {
       {activeContent && (
         <ContentCard
           title={activeContent}
+          //@ts-ignore
           content={
             contentItems.find((item) => item.text === activeContent)?.content ||
             ""
