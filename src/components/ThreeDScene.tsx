@@ -7,6 +7,7 @@ import react from "/public/stack/react.png";
 import next from "/public/stack/next.png";
 import firebase from "/public/stack/firebase.png";
 import supabase from "/public/stack/supabase(black).png";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -18,6 +19,7 @@ import {
 import * as THREE from "three";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 function Pyramid() {
   const ref = useRef<THREE.Mesh>(null!);
@@ -142,7 +144,7 @@ function Scene() {
             <div className="w-44 h-44 rounded-full relative overflow-hidden border-2 border-white mr-4">
               <Image src={profile} alt="Foto Profil" objectFit="cover" />
             </div>
-            <div className="flex flex-col justify-center text-base text-center">
+            <div className="flex flex-col justify-center text-center text-xl">
               <p>Halo 👋!</p>
               <p>Nama saya Muhammad Wahyu Ramadhan </p>
               <p>Saya seorang Frontend Developer dari Medan 📌</p>
@@ -247,8 +249,27 @@ function Scene() {
       },
       {
         text: "Contact Me",
-        content:
-          "Get in touch at johndoe@example.com or connect with me on LinkedIn and GitHub.",
+        content: (
+          <div className="flex gap-4 justify-around">
+            <Link
+              className="w-44 h-44"
+              href="https://web.facebook.com/deajin.mexico.7"
+            >
+              <Facebook className="h-full w-full" />
+            </Link>
+
+            <Link
+              className="w-44 h-44"
+              href="https://www.instagram.com/_wahyur21"
+            >
+              <Instagram className="h-full w-full" />
+            </Link>
+
+            <Link className="w-44 h-44" href="https://twitter.com/mexico_pro_">
+              <Twitter className="h-full w-full" />
+            </Link>
+          </div>
+        ),
       },
     ];
 
