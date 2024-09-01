@@ -3,6 +3,10 @@
 import { useRef, useMemo, useState } from "react";
 import Image from "next/image";
 import profile from "/public/profile.jpg";
+import react from "/public/stack/react.png";
+import next from "/public/stack/next.png";
+import firebase from "/public/stack/firebase.png";
+import supabase from "/public/stack/supabase(black).png";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -106,7 +110,7 @@ function ContentCard({
     <Html center className="w-screen flex justify-center">
       <Card className="w-1/2 bg-black border border-white text-white">
         <CardHeader>
-          <CardTitle className="text-2xl">{title}</CardTitle>
+          <CardTitle className="text-4xl">{title}</CardTitle>
         </CardHeader>
         <CardContent>
           {content}
@@ -200,8 +204,46 @@ function Scene() {
       },
       {
         text: "My Skills",
-        content:
-          "Proficient in React, Three.js, Next.js, TypeScript, and WebGL. Experienced in creating performant and accessible web applications.",
+        content: (
+          <div className="grid grid-cols-4 grid-rows-4 gap-4 h-[50vh]">
+            <div className="col-span-2 row-span-3 col-start-3 row-start-1 relative rounded-md border border-white">
+              <Image
+                src={react}
+                alt="Foto Profil"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
+              />
+            </div>
+            <div className="col-span-2 row-span-3 col-start-1 relative rounded-md border border-white row-start-2">
+              <Image
+                src={next}
+                alt="Foto Profil"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
+              />
+            </div>
+            <div className="col-start-1 col-span-2 relative rounded-md border border-white">
+              <Image
+                src={supabase}
+                alt="Foto Profil"
+                layout="cover"
+                objectFit="cover"
+                className="w-full h-full"
+              />
+            </div>
+            <div className="col-span-2 col-start-3 row-start-4 relative rounded-md border border-white">
+              <Image
+                src={firebase}
+                alt="Foto Profil"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        ),
       },
       {
         text: "Contact Me",
