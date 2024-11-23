@@ -1,9 +1,13 @@
-
+import Logo from "@/components/section/punchline/Logo";
+import PunchlineText from "@/components/section/punchline/PunchlineText";
 
 export default function Home() {
   return (
-    <main className="p-0 m-0 h-full">
-      <h1>Hallo Dunia</h1>
-    </main>
+    <section>
+      <div className="flex flex-col justify-center min-h-screen gap-3 md:gap-12 -mt-12">
+        <Logo />
+        <PunchlineText />
+      </div>
+    </section>
   );
 }

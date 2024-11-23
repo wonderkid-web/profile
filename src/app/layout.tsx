@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fira_Sans } from "next/font/google";
 import "./globals.css";
+import Container from "@/components/layout/Container";
 
-const inter = Inter({ subsets: ["latin"] });
+const firaSans = Fira_Sans({
+  weight: "400",
+  subsets: ["latin"]
+})
 
 export const metadata: Metadata = {
   title: "Wonderkid Portfolio",
@@ -16,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-screen`}>{children}</body>
+      <body
+        className={`${firaSans.className} h-screen bg-customPrimaryBg text-customPrimaryText`}
+      >
+        <Container>{children}</Container>
+      </body>
     </html>
   );
 }
