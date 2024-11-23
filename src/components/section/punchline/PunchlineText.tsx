@@ -11,12 +11,14 @@ export default function PunchlineText() {
         A web developer, admin, and programming mentor.
       </p>
       <p className="text-md text-center md:text-2xl text-customSecondaryText mt-1 md:mt-3 leading-relaxed">
-        {"Let’s"} bring <span className="underline font-bold">ideas</span> to life,
-        the fun and focused way.
+        {"Let’s"} bring <span className="underline font-bold">ideas</span> to
+        life, the fun and focused way.
       </p>
       <Link
         href={"/"}
-        className="px-6 bg-customSecondaryText font-semibold text-center rounded-full py-3 md:py-4 text-md md:text-2xl text-customPrimaryBg mt-1 md:mt-3 mb-4"
+        className="px-6 bg-customSecondaryText font-semibold text-center rounded-full py-3 md:py-4 text-md md:text-2xl text-customPrimaryBg mt-1 md:mt-3 mb-4 
+    motion-scale-in-[0.5] motion-rotate-in-[-10deg] motion-blur-in-[10px] motion-delay-[0.75s]/rotate motion-delay-[0.75s]/blur motion-ease-bounce
+        "
       >
         {"Let’s"} Collaborate!
       </Link>

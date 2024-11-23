@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${firaSans.className} h-screen bg-customPrimaryBg text-customPrimaryText`}
       >
-        <Container>{children}</Container>
+        {children}
       </body>
     </html>
   );
