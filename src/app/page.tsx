@@ -1,10 +1,10 @@
-
 import Logo from "@/components/section/punchline/Logo";
 import PunchlineText from "@/components/section/punchline/PunchlineText";
 import Container from "@/components/layout/Container";
-import React from "react";
 import TimeLine from "@/components/section/timeline/TimeLine";
 import ProfilePicture from "@/components/section/timeline/ProfilePicture";
+import Profile from "@/components/section/aboutme/Profile";
+import Aboutme from "@/components/section/aboutme/Aboutme";
 
 export default function Home() {
   return (
@@ -16,11 +16,14 @@ export default function Home() {
         </div>
       </Container>
 
-      <div className="flex flex-col md:flex-row overflow-hidden">
+      <div className="flex flex-col lg:flex-row justify-center gap-0 md:gap-24 min-h-screen p-4">
+        <Profile />
+        <Aboutme />
+      </div>
+
+      <div className="flex flex-col md:flex-row overflow-hidden border-y-2 border-customSecondaryText">
         <ProfilePicture />
-        <div className="flex p-2 md:p-24 flex-col gap-6 w-full md:w-1/2 md:max-h-screen max-h-[80vh] overflow-auto pt-4 md:pt-6">
-          <TimeLine />
-        </div>
+        <TimeLine />
       </div>
     </section>
   );

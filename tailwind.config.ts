@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      objectPosition: {
+        'custom-position': '0 -10px', // Tambahkan posisi sesuai kebutuhan
+      },
       colors: {
         customPrimaryText: "#222428",
         customSecondaryText: "#F4A261",

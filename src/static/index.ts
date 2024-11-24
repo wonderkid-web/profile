@@ -35,3 +35,14 @@ export   const timelineData = [
         "Mengelola data administrasi service kendaraan. Melakukan pengarsipan kwitansi riwayat service.",
     },
   ];
+
+
+export  const socialUrls = [
+    "https://www.linkedin.com/in/wonderrrkid/",
+    "https://web.facebook.com/deajin.mexico.7/",
+    "https://www.instagram.com/_wahyur21/",
+    "https://api.whatsapp.com/send?phone=6283191319297&text=Hey%20Wahyu%2C%20Let%27s%20Collaborate%20with%20me!%20%E2%9C%8B",
+    "https://id.jobstreet.com/id/profile/muhamad-ramadhan-hYDqYnclw5",
+    "mailto:mwahyuap2018@gmail.com?subject=Hi%20Wahyu&body=I%20would%20like%20to%20discuss%20your%20portfolio."
+  ];
+  
