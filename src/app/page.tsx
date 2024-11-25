@@ -25,6 +25,12 @@ export default function Home() {
         <ProfilePicture />
         <TimeLine />
       </div>
+
+      {/* 
+      
+      Adding Achievement Section
+
+      */}
     </section>
   );
 }
